@@ -4,12 +4,7 @@ import SearchBar from "./SearchBar";
 import employees from "../Database/employee";
 
 const teams = ["Android", "Web Developer", "Backend", "UI/UX"];
-const positions = [
-  "Android Developer",
-  "Full Stack Web Developer",
-  "Backend Developer",
-  "Designer",
-];
+const positions = ["Developer", "Designer"];
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
