@@ -3,21 +3,28 @@ import SeatingChart from "./SeatingChair";
 import SearchBar from "./SearchBar";
 import employees from "../Database/employee";
 
+// Different teams For Filter Section 
 const teams = ["Android", "Web Developer", "Backend", "UI/UX"];
+// Different Position for Position Section 
 const positions = ["Developer", "Designer"];
 
 function Home() {
+  // useState for Serach Term 
   const [searchTerm, setSearchTerm] = useState("");
+  // useState for FIlter Criteria term 
   const [filterCriteria, setFilterCriteria] = useState({
     team: [],
     position: [],
   });
+  // useStaet for Show Filter Pop up 
   const [showFilterPopup, setShowFilterPopup] = useState(false);
 
+  // Handle Search Function 
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
 
+  // Handle Filter Chaneg function 
   const handleFilterChange = (type, value) => {
     setFilterCriteria((prev) => {
       const newCriteria = { ...prev };
@@ -29,7 +36,7 @@ function Home() {
       return newCriteria;
     });
   };
-
+  // Filter employee Function 
   const filteredEmployees = employees.filter((employee) => {
     const nameMatch = employee.name
       .toLowerCase()
@@ -51,6 +58,7 @@ function Home() {
           Spot
         </span>
       </div>
+      {/** Search and Filter Section  */}
       <div className="flex justify-end">
         <SearchBar onSearch={handleSearch} />
         <div className="relative my-2 ml-3">
@@ -94,6 +102,7 @@ function Home() {
           )}
         </div>
       </div>
+      {/** Seating Chart Div  */}
       <SeatingChart employees={filteredEmployees} />
     </div>
   );

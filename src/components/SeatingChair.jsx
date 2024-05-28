@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
 const SeatingChart = ({ employees }) => {
+  // useStaet for Hover Chair
   const [hoveredChair, setHoveredChair] = useState(null);
 
+  // Render hovered Div
   const renderTooltip = (employee) => (
     <div className="absolute bg-white p-2 rounded shadow-lg text-sm w-48 z-10">
       <div className="flex flex-row">
@@ -49,6 +51,7 @@ const SeatingChart = ({ employees }) => {
     <div className="flex flex-row flex-wrap border-2 border-[#9C9C9E]">
       {oneSpace.map((space, index) => (
         <div key={index} className="relative my-5 mx-10">
+          {/** Render Two Chair  */}
           <div className="flex flex-row justify-between mx-5">
             {space.chairIds.slice(0, 2).map((chairId, index) => {
               const employee = employees.find(
@@ -70,9 +73,11 @@ const SeatingChart = ({ employees }) => {
               );
             })}
           </div>
+          {/** Render Table  */}
           <div className="bg-[#E6E6E6] py-12 px-24 text-[#A89998] my-1">
             {space.tableNo}
           </div>
+          {/** Render Two Chair  */}
           <div className="flex flex-row justify-between mx-5">
             {space.chairIds.slice(2, 4).map((chairId, index) => {
               const employee = employees.find(
