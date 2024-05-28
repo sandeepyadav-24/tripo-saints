@@ -50,7 +50,7 @@ const SeatingChart = ({ employees }) => {
   return (
     <div className="flex flex-row flex-wrap border-2 border-[#9C9C9E]">
       {oneSpace.map((space, index) => (
-        <div key={index} className="relative my-5 mx-10">
+        <div key={index} className="relative my-5 md:mx-10">
           {/** Render Two Chair  */}
           <div className="flex flex-row justify-between mx-5">
             {space.chairIds.slice(0, 2).map((chairId, index) => {
@@ -74,7 +74,7 @@ const SeatingChart = ({ employees }) => {
             })}
           </div>
           {/** Render Table  */}
-          <div className="bg-[#E6E6E6] py-12 px-24 text-[#A89998] my-1">
+          <div className="bg-[#E6E6E6] py-12 px-16 md:px-24 text-[#A89998] my-1">
             {space.tableNo}
           </div>
           {/** Render Two Chair  */}

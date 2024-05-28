@@ -52,7 +52,7 @@ function Home() {
   });
 
   return (
-    <div className=" px-10 md:px-40 md:h-screen bg-[#F2F2F2]">
+    <div className=" px-5 md:px-40 md:h-screen bg-[#F2F2F2]">
       <div className="pt-20 pb-10">
         <span className="py-12 px-8 bg-[#B3B3B3] rounded-full text-white text-2xl font-semibold">
           Spot
