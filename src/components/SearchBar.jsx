@@ -9,13 +9,13 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className="search-bar">
+    <div className="search-bar my-3 ">
       <input
         type="text"
-        placeholder="Search for an employee..."
+        placeholder="Search "
         value={term}
         onChange={handleInputChange}
-        className="form-control"
+        className="form-control px-3 py-1 border-[#CACACA] border-2"
       />
     </div>
   );

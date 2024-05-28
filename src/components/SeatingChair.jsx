@@ -4,93 +4,98 @@ const SeatingChart = ({ employees }) => {
   const [hoveredChair, setHoveredChair] = useState(null);
 
   const renderTooltip = (employee) => (
-    <div className="absolute bg-white p-2 rounded shadow-lg text-sm w-20 ">
-      <div>
-        <strong>{employee.name}</strong>
+    <div className="absolute bg-white p-2 rounded shadow-lg text-sm w-48 z-10">
+      <div className="flex flex-row">
+        <div className="dp-image rounded-full h-10 w-10 mr-3 bg-slate-500"></div>
+        <div>
+          <div>{employee.name}</div>
+          <div className="font-semibold text-lg">{employee.position}</div>
+        </div>
       </div>
-      <div>{employee.position}</div>
-      <div>Team: {employee.team}</div>
-      <div>Current Project: {employee.project}</div>
+
+      <div className="font-semibold">Team: {employee.team}</div>
+      <div className="font-semibold"> Project: {employee.project}</div>
     </div>
   );
 
   const oneSpace = [
-    { id: 1, employeeId: 1 },
-    { id: 2, employeeId: 2 },
-    { id: 3, employeeId: 3 },
-    { id: 4, employeeId: 4 },
-    { id: 5, employeeId: 5 },
-    { id: 6, employeeId: 6 },
-    { id: 7, employeeId: 7 },
-    { id: 8, employeeId: 8 },
-    { id: 9, employeeId: 9 },
-    { id: 10, employeeId: 10 },
-    { id: 11, employeeId: 11 },
-    { id: 12, employeeId: 12 },
+    {
+      tableNo: "Table No. 1",
+      chairIds: [1, 0, 2, 3],
+    },
+    {
+      tableNo: "Table No. 2",
+      chairIds: [0, 4, 5, 0],
+    },
+    {
+      tableNo: "Table No. 3",
+      chairIds: [6, 7, 8, 0],
+    },
+    {
+      tableNo: "Table No. 4",
+      chairIds: [9, 10, 11, 12],
+    },
+    {
+      tableNo: "Table No. 5",
+      chairIds: [13, 14, 0, 15],
+    },
+    {
+      tableNo: "Table No. 6",
+      chairIds: [0, 0, 16, 17],
+    },
   ];
 
   return (
-    <div className="flex flex-row flex-wrap">
-      {oneSpace.map((space) => {
-        const employee = employees.find((emp) => emp.id === space.employeeId);
-        return (
-          <div key={space.id} className="relative m-5">
-            <div className="flex flex-row justify-between">
-              <div
-                className="relative"
-                onMouseEnter={() => setHoveredChair(space.id)}
-                onMouseLeave={() => setHoveredChair(null)}
-              >
-                <img alt="Chair" src="/chair.png" className="h-20 w-20" />
-                {hoveredChair === space.id &&
-                  employee &&
-                  renderTooltip(employee)}
-              </div>
-              <div
-                className="relative"
-                onMouseEnter={() => setHoveredChair(space.id)}
-                onMouseLeave={() => setHoveredChair(null)}
-              >
-                <img alt="Chair" src="/chair.png" className="h-20 w-20" />
-                {hoveredChair === space.id &&
-                  employee &&
-                  renderTooltip(employee)}
-              </div>
-            </div>
-            <img alt="Table" src="/table.png" className="h-40 w-60" />
-            <div className="flex flex-row justify-between">
-              <div
-                className="relative"
-                onMouseEnter={() => setHoveredChair(space.id)}
-                onMouseLeave={() => setHoveredChair(null)}
-              >
-                <img
-                  alt="Chair"
-                  src="/chair.png"
-                  className="h-20 w-20 rotate-180"
-                />
-                {hoveredChair === space.id &&
-                  employee &&
-                  renderTooltip(employee)}
-              </div>
-              <div
-                className="relative"
-                onMouseEnter={() => setHoveredChair(space.id)}
-                onMouseLeave={() => setHoveredChair(null)}
-              >
-                <img
-                  alt="Chair"
-                  src="/chair.png"
-                  className="h-20 w-20 rotate-180"
-                />
-                {hoveredChair === space.id &&
-                  employee &&
-                  renderTooltip(employee)}
-              </div>
-            </div>
+    <div className="flex flex-row flex-wrap border-2 border-[#9C9C9E]">
+      {oneSpace.map((space, index) => (
+        <div key={index} className="relative my-5 mx-10">
+          <div className="flex flex-row justify-between mx-5">
+            {space.chairIds.slice(0, 2).map((chairId, index) => {
+              const employee = employees.find(
+                (emp) => emp.employeeId === chairId
+              );
+              return (
+                <div
+                  key={index}
+                  className={`relative w-20 h-10 ${
+                    employee ? "bg-[#412412]" : "bg-gray-300"
+                  } rounded-tr-full rounded-tl-full`}
+                  onMouseEnter={() => setHoveredChair(chairId)}
+                  onMouseLeave={() => setHoveredChair(null)}
+                >
+                  {hoveredChair === chairId &&
+                    employee &&
+                    renderTooltip(employee)}
+                </div>
+              );
+            })}
           </div>
-        );
-      })}
+          <div className="bg-[#E6E6E6] py-12 px-24 text-[#A89998] my-1">
+            {space.tableNo}
+          </div>
+          <div className="flex flex-row justify-between mx-5">
+            {space.chairIds.slice(2, 4).map((chairId, index) => {
+              const employee = employees.find(
+                (emp) => emp.employeeId === chairId
+              );
+              return (
+                <div
+                  key={index}
+                  className={`relative w-20 h-10 ${
+                    employee ? "bg-[#412412]" : "bg-gray-300"
+                  } rounded-br-full rounded-bl-full`}
+                  onMouseEnter={() => setHoveredChair(chairId)}
+                  onMouseLeave={() => setHoveredChair(null)}
+                >
+                  {hoveredChair === chairId &&
+                    employee &&
+                    renderTooltip(employee)}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
