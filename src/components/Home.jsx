@@ -3,28 +3,28 @@ import SeatingChart from "./SeatingChair";
 import SearchBar from "./SearchBar";
 import employees from "../Database/employee";
 
-// Different teams For Filter Section 
+// Different teams For Filter Section
 const teams = ["Android", "Web Developer", "Backend", "UI/UX"];
-// Different Position for Position Section 
+// Different Position for Position Section
 const positions = ["Developer", "Designer"];
 
 function Home() {
-  // useState for Serach Term 
+  // useState for Serach Term
   const [searchTerm, setSearchTerm] = useState("");
-  // useState for FIlter Criteria term 
+  // useState for FIlter Criteria term
   const [filterCriteria, setFilterCriteria] = useState({
     team: [],
     position: [],
   });
-  // useStaet for Show Filter Pop up 
+  // useStaet for Show Filter Pop up
   const [showFilterPopup, setShowFilterPopup] = useState(false);
 
-  // Handle Search Function 
+  // Handle Search Function
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
 
-  // Handle Filter Chaneg function 
+  // Handle Filter Chaneg function
   const handleFilterChange = (type, value) => {
     setFilterCriteria((prev) => {
       const newCriteria = { ...prev };
@@ -36,7 +36,7 @@ function Home() {
       return newCriteria;
     });
   };
-  // Filter employee Function 
+  // Filter employee Function
   const filteredEmployees = employees.filter((employee) => {
     const nameMatch = employee.name
       .toLowerCase()
@@ -52,7 +52,7 @@ function Home() {
   });
 
   return (
-    <div className="px-40 h-screen bg-[#F2F2F2]">
+    <div className=" px-10 md:px-40 md:h-screen bg-[#F2F2F2]">
       <div className="pt-20 pb-10">
         <span className="py-12 px-8 bg-[#B3B3B3] rounded-full text-white text-2xl font-semibold">
           Spot
