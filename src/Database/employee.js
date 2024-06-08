@@ -135,5 +135,13 @@ const employees = [
     team: "UI/UX",
     project: "App Redesign",
   },
+  {
+    employeeId: 18,
+    chairId: 4,
+    name: "Rajshree",
+    position: "Developer",
+    team: "Backend",
+    project: "API Development",
+  },
 ];
 export default employees;
